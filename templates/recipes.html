@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipes - My Recipe Book</title>
+        <link rel="stylesheet" href="/static/main.css">
+    </head>
+    <body>
+            <h1> Here are all your saved recipes </h1>
+            <h2> What should we make today? </h2>
+
+            <ul id=navbar>
+                <li><a href="{{url_for('index', username=username)}}">Home</li>
+                <li><a href="{{url_for('recipes')}}">Recipes</li>
+                <li><a href="{{url_for('favourites')}}">Favourites</li>
+            </ul>
+            <ul>
+
+            </ul>
+    </body>
+</html>
