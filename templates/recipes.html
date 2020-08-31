@@ -5,16 +5,26 @@
         <link rel="stylesheet" href="/static/main.css">
     </head>
     <body>
-            <h1> Here are all your saved recipes </h1>
-            <h2> What should we make today? </h2>
+        <h2> Here are all your saved recipes </h2>
 
-            <ul id=navbar>
-                <li><a href="{{url_for('index', username=username)}}">Home</li>
-                <li><a href="{{url_for('recipes')}}">Recipes</li>
-                <li><a href="{{url_for('favourites')}}">Favourites</li>
-            </ul>
-            <ul>
+         <div id="navbar">
+            <a class="selected" href="/">Home</a>
+            <a href="{{url_for('recipes')}}">Recipes</a>
+            <a href="{{url_for('favourites')}}">Favourites</a>
+        </div>
+        <script type="text/javascript">
+            window.onscroll = function() {myFunction()};
+            var navbar = document.getElementById("navbar");
+            var sticky = navbar.offsetTop;
 
-            </ul>
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
+
     </body>
 </html>
