@@ -29,20 +29,28 @@
     /*margin-bottom: 32px;*/
 }
 
+/*.centered { text-align: center; }*/
+
 h1 {
     color: black;
-    font-style: normal;
     text-align: center;
-    font-size: 80pt;
-    font-family: "Tahoma";
+    font-style: normal;
+    font-size: 130px;
+    font-family: Impact, Charcoal, sans-serif;
     /*text-shadow: 4px 4px 16px black;*/
+}
+
+h2 {
+    text-align:center;
+    font-size: 30px;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 h3 {
     color: white;
     margin-top: 0px;
     margin-bottom: 48px;
-    font-family: "Tahoma";
+    font-family: Impact, Charcoal, sans-serif;
     text-shadow: 4px 4px 8px black;
 }
 
