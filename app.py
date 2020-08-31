@@ -1,14 +1,16 @@
 import os
+import getpass
 from flask import Flask, render_template, flash
 
 app = Flask(__name__)
 app.secret_key = os.urandom(1)
 
+user = getpass.getuser().title()
+
 # Define a route for the app's home page
 @app.route("/")
 def index():
-    flash("This is an error message")
-    return render_template("index.html")
+    return render_template("index.html", username=user)
 
 # Define a route for the app's About page
 @app.route("/about")

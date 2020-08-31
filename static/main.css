@@ -30,10 +30,12 @@
 }
 
 h1 {
-    color: white;
+    color: black;
+    font-style: normal;
+    text-align: center;
     font-size: 80pt;
     font-family: "Tahoma";
-    text-shadow: 4px 4px 16px black;
+    /*text-shadow: 4px 4px 16px black;*/
 }
 
 h3 {
