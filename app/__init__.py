@@ -1,9 +1,9 @@
 import os
-from flask import Flask, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-
 app = Flask(__name__)
+app.secret_key = os.urandom(1)
 
 # SQL stuff
 basedir = os.path.abspath(os.path.dirname(__file__))
