@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Recipe Book</title>
+        <link rel="stylesheet" href="/static/main.css">
+    </head>
+    <body>
+        <h1> Hello {{ username }}! </h1>
+        <h2> Welcome back to your recipe book </h2>
+        <h2> What should we make today? </h2>
+        </br>
+        </br>
+
+        <!-- navigation bar -->
+        <div id="navbar">
+            <a href="/">Home</a>
+            <a href="{{url_for('recipes')}}">Recipes</a>
+            <a href="{{url_for('favourites')}}">Favourites</a>
+        </div>
+        <h2 style="text-align:left;"> Suggested Recipes </h2>
+        
+        <!-- Suggested recipes to do -->
+        <div class="suggested">
+            <a target="_blank" href="img_mountains.jpg">
+            <img src="img_mountains.jpg" alt="Mountains" width="600" height="400">
+            </a>
+            <div class="desc">Add a description of the image here
+        </div>
+
+        <script type="text/javascript">
+            window.onscroll = function() {myFunction()};
+            var navbar = document.getElementById("navbar");
+            var stick = navbar.offsetTop;
+
+            function myFunction() {
+              if (window.pageYOffset >= stick) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
+
+    </body>
+</html>

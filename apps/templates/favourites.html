@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Favourites - My Recipe Book</title>
+        <link rel="stylesheet" href="/static/main.css">
+    </head>
+    <body>
+        <!-- TODO Add a script if there is no username given to give a generic greeting -->
+        <h2> Favourite recipes </h2>
+        </br>
+        </br>
+        <div id="navbar">
+            <a href="/">Home</a>
+            <a href="{{url_for('recipes')}}">Recipes</a>
+            <a href="{{url_for('favourites')}}">Favourites</a>
+        </div>
+            <!-- TODO Add some recipes -->
+        </div>
+        <script type="text/javascript">
+            window.onscroll = function() {myFunction()};
+            var navbar = document.getElementById("navbar");
+            var stick = navbar.offsetTop;
+
+            function myFunction() {
+              if (window.pageYOffset >= stick) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
+
+    </body>
+</html>

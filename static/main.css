@@ -1,16 +1,15 @@
+/* Nav bar styling */
 #navbar {
     overflow: hidden;
     background-color: #333;
     height: 55px;
 }
 
-/* Style the links inside the navigation bar */
 #navbar a {
   float: left;
   color: #f2f2f2;
-  list-style-type: none;
   margin: 0;
-  padding:16px;
+  padding:18px;
   text-align: center;  
   text-decoration: none;
   font-size: 17px;
@@ -22,41 +21,47 @@
   color: black;
 }
 
-/* Page content */
+/* For sticky navigation bar */
 .content {
   padding: 16px;
 }
 
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;
 }
 
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
   padding-top: 60px;
 }
 
-
-#banner {
-    background-image: url("/static/banner.jpg");
-    background-repeat: no-repeat;
-    background-color: #96dfee;
-    background-size: cover;
-    /*margin-bottom: 32px;*/
+/*For recipe list display*/
+div.suggested {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
 }
 
-.left { text-align: left; }
+div.suggested img {
+  width: 25%;
+  height: auto;
+}
 
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+
+/*Typesetting*/
 h1 {
     color: black;
     text-align: center;
     font-style: normal;
     font-size: 130px;
     font-family: Impact, Charcoal, sans-serif;
-    /*text-shadow: 4px 4px 16px black;*/
 }
 
 h2 {
@@ -73,7 +78,15 @@ h3 {
     text-shadow: 4px 4px 8px black;
 }
 
-#uploaded-image {
+
+/*#banner {
+    background-image: url("/static/banner.jpg");
+    background-repeat: no-repeat;
+    background-color: #96dfee;
+    background-size: cover;
+}*/
+
+/*#uploaded-image {
     height: 384px;
 }
 
@@ -91,4 +104,4 @@ h3 {
 #uploaded-image {
     display: block;
     margin: 32px auto;
-}
+}*/
