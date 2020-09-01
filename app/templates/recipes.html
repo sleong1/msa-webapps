@@ -5,12 +5,10 @@
         <link rel="stylesheet" href="/static/main.css">
     </head>
     <body>
-        <h2> Saved recipes </h2>
-        </br>
-        </br>
+        <h1 style="font-size: 100px;"> Saved recipes </h1>
          <div id="navbar">
             <a class="selected" href="/">Home</a>
-            <a href="{{url_for('recipes')}}">Recipes</a>
+            <a href="{{url_for('recipes')}}">All Recipes</a>
             <a href="{{url_for('favourites')}}">Favourites</a>
         </div>
         <script type="text/javascript">
@@ -26,6 +24,23 @@
               }
             }
         </script>
+
+        <div class="suggested">
+            <table style="padding-top: 50px;">
+                <tr>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Favourite </th>
+                </tr>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td style="width: 30%;"> {{recipe.name}} </td>
+                        <td style="width: 60%;"> {{recipe.description}} </td>
+                        <td style="width: 10%; text-align: center;"> {{recipe.fav}} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
 
     </body>
 </html>

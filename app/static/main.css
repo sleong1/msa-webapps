@@ -10,7 +10,7 @@
   color: #f2f2f2;
   margin: 0;
   padding:18px;
-  text-align: center;  
+  text-align: center;
   text-decoration: none;
   font-size: 17px;
   font-family: Verdana, Geneva, sans-serif;
@@ -37,21 +37,30 @@
 }
 
 /* Suggested recipes table layout*/
-div.suggested table {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 div.suggested th {
     color: white;
-    background-color: darkgrey;
+    background-color: dimgray;
     text-align: left;
     font-family: Verdana, Geneva, sans-serif;
     padding: 10px;
 }
 
 div.suggested tr, td{
+    text-align: left;
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 20px;
+}
+
+/* All recipes table layout*/
+div.allrecipes th {
+    color: white;
+    background-color: dimgray;
+    text-align: left;
+    font-family: Verdana, Geneva, sans-serif;
+    padding: 10px;
+}
+
+div.allrecipes tr, td{
     text-align: left;
     font-family: Verdana, Geneva, sans-serif;
     padding: 20px;

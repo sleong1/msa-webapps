@@ -14,7 +14,7 @@
         <!-- navigation bar -->
         <div id="navbar">
             <a href="/">Home</a>
-            <a href="{{url_for('recipes')}}">Recipes</a>
+            <a href="{{url_for('recipes')}}">All Recipes</a>
             <a href="{{url_for('favourites')}}">Favourites</a>
         </div>
         <h2 style="text-align:left;"> Suggested Recipes </h2>
@@ -31,7 +31,7 @@
                     <tr>
                         <td style="width: 30%;"> {{recipe.name}} </td>
                         <td style="width: 60%;"> {{recipe.description}} </td>
-                        <td style="width: 10%;"> {{recipe.fav}} </td>
+                        <td style="width: 10%; text-align: center;"> {{recipe.fav}} </td>
                     </tr>
                 {% endfor %}
             </table>
