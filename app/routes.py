@@ -28,3 +28,10 @@ def recipes():
 def favourites():
     favs = AllRecipes.query.filter_by(fav=True).all()
     return render_template("favourites.html", favs=favs)
+
+@app.route("/recipes/<recipeid>")
+def recipe(recipeid):
+    this_recipe = AllRecipes.query.filter_by(id=recipeid).first()
+    [ings, method] = str(this_recipe.recipe).split("</br></br>")
+    ings = "\n".join(ings.split("</br>"))
+    return render_template("this_recipe.html", name=this_recipe.name, ingredients=ings, method=method)

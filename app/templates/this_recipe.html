@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{name}} - My Recipe Book</title>
+        <link rel="stylesheet" href="/static/main.css">
+    </head>
+    <body>
+        <h1 style="font-size: 100px;"> {{name}} </h1>
+         <div id="navbar">
+            <a class="selected" href="/">Home</a>
+            <a href="{{url_for('recipes')}}">All Recipes</a>
+            <a href="{{url_for('favourites')}}">Favourites</a>
+        </div>
+        <script type="text/javascript">
+            window.onscroll = function() {myFunction()};
+            var navbar = document.getElementById("navbar");
+            var sticky = navbar.offsetTop;
+
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
+
+        <div class="recipepage">
+        	<h3> Ingredients </h3>
+        	<p> {{ ingredients }} </p>
+        	</br>
+        	<h3> Method </h3>
+        	<p> {{ method }} </p>        	
+        </div>
+
+    </body>
+</html>
