@@ -10,7 +10,7 @@ user = getpass.getuser().title()
 @app.route("/")
 def index():
     rand_idx = []
-    while len(rand_idx) < 6:
+    while len(rand_idx) < 5:
         ranval = random.randint(1, AllRecipes.query.count())
         if ranval not in rand_idx:
             rand_idx.append(ranval)
