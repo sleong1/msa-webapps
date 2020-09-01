@@ -85,11 +85,19 @@ div.recipeslist tr:hover {
 }
 
 /* Layout for recipe page*/
-div.recipepage p {
+#ingredientlist {
   font-family: Verdana, Geneva, sans-serif;
+  font-size: 18px;
+  margin-left: 20px;
+  padding-bottom: 10px; 
 }
 
-
+#methodlist {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 18px;
+  margin-left: 20px;
+  padding-bottom: 10px;
+}
 
 /*
 div.suggested {
@@ -127,7 +135,7 @@ h2 {
 
 h3 {
     color: black;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 10px;
     font-family: Impact, Charcoal, sans-serif;
 }

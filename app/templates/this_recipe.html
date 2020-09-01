@@ -25,12 +25,19 @@
             }
         </script>
 
-        <div class="recipepage">
+        <div>
         	<h3> Ingredients </h3>
-        	<p> {{ ingredients }} </p>
-        	</br>
+        	<ul>
+	        	{% for ingredient in ingredients %}
+	        	<li id="ingredientlist">{{ingredient}}</li>
+	        	{% endfor %}
+	        </ul>
         	<h3> Method </h3>
-        	<p> {{ method }} </p>        	
+        	<ol>
+	        	{% for step in method %}
+	        	<li id=methodlist>{{step}}</li>
+	        	{% endfor %}
+        	</ol>
         </div>
 
     </body>
