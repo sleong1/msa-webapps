@@ -1,0 +1,36 @@
+<html>
+	<head>
+		{% if title %}
+		<title> {{ title }} - My Recipe Book </title>
+		{% else %}
+		<title> My Recipe Book </title>
+		{% endif %}
+		<link rel="stylesheet" href="/static/main.css">
+	</head>
+	<body>
+		{% block heading %}{% endblock %}
+		</br>
+        <!-- navigation bar -->
+        <div id="navbar">
+            <a href="/">Home</a>
+            <a href="{{url_for('recipes')}}">All Recipes</a>
+            <a href="{{url_for('favourites')}}">Favourites</a>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <script type="text/javascript">
+            window.onscroll = function() {myFunction()};
+            var navbar = document.getElementById("navbar");
+            var stick = navbar.offsetTop;
+
+            function myFunction() {
+              if (window.pageYOffset >= stick) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
+        </script>
+	</body>
+</html>

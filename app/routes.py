@@ -1,5 +1,5 @@
 from flask import render_template
-from app import app, models
+from app import app, models, db
 import random
 import getpass
 
@@ -36,3 +36,8 @@ def recipe(recipeid):
     ings = [i.strip().capitalize() for i in ings.split("</br>")]
     method = [m.strip().capitalize() for m in method.split("</br>")]
     return render_template("this_recipe.html", name=this_recipe.name, ingredients=ings, method=method)
+
+
+@app.route("/new-recipe")
+def newrecipe():
+    return render_template("new_recipe.html")

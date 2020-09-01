@@ -1,56 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Favourites - My Recipe Book</title>
-        <link rel="stylesheet" href="/static/main.css">
-    </head>
-    <body>
-        <!-- TODO Add a script if there is no username given to give a generic greeting -->
-        <h2> Favourite recipes </h2>
-        </br>
-        </br>
-        <div id="navbar">
-            <a href="/">Home</a>
-            <a href="{{url_for('recipes')}}">All Recipes</a>
-            <a href="{{url_for('favourites')}}">Favourites</a>
-        </div>
-        <!-- Favourited recipes -->
-        <div class="recipeslist">
-            <table>
+
+<title>Favourites - My Recipe Book</title>
+
+{% extends "base.html" %}
+
+{% block heading %}
+    <h1> Favourites </h1>
+{% endblock %}
+
+{% block content %}
+    <!-- Favourited recipes -->
+    <div class="recipeslist">
+        <table>
+            <tr>
+                <th> Name </th>
+                <th> Description </th>
+                <th> Favourite </th>
+            </tr>
+            {% for recipe in favs %}
                 <tr>
-                    <th> Name </th>
-                    <th> Description </th>
-                    <th> Favourite </th>
+                    <td style="width: 25%;"> {{recipe.name}} </td>
+                    <td style="width: 65%;"> {{recipe.description}} </td>
+                    <td style="width: 10%; text-align: center;">
+                        {% if recipe.fav %}
+                            <img src="../static/star_y.png" width="40px" height="auto">
+                        {% else %}
+                            <img src="../static/star.png" width="40px" height="auto">
+                        {% endif %}
+                    </td>
                 </tr>
-                {% for recipe in favs %}
-                    <tr>
-                        <td style="width: 25%;"> {{recipe.name}} </td>
-                        <td style="width: 65%;"> {{recipe.description}} </td>
-                        <td style="width: 10%; text-align: center;">
-                            {% if recipe.fav %}
-                                <img src="../static/star_y.png" width="40px" height="auto">
-                            {% else %}
-                                <img src="../static/star.png" width="40px" height="auto">
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-        <script type="text/javascript">
-            window.onscroll = function() {myFunction()};
-            var navbar = document.getElementById("navbar");
-            var stick = navbar.offsetTop;
-
-            function myFunction() {
-              if (window.pageYOffset >= stick) {
-                navbar.classList.add("sticky")
-              } else {
-                navbar.classList.remove("sticky");
-              }
-            }
-        </script>
-
-    </body>
-</html>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

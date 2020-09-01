@@ -1,52 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Recipes - My Recipe Book</title>
-        <link rel="stylesheet" href="/static/main.css">
-    </head>
-    <body>
-        <h1 style="font-size: 100px;"> Saved recipes </h1>
-         <div id="navbar">
-            <a class="selected" href="/">Home</a>
-            <a href="{{url_for('recipes')}}">All Recipes</a>
-            <a href="{{url_for('favourites')}}">Favourites</a>
-        </div>
-        <script type="text/javascript">
-            window.onscroll = function() {myFunction()};
-            var navbar = document.getElementById("navbar");
-            var sticky = navbar.offsetTop;
+<title>All Recipes</title>
 
-            function myFunction() {
-              if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
-              } else {
-                navbar.classList.remove("sticky");
-              }
-            }
-        </script>
+{% extends "base.html" %}
 
-        <div class="recipeslist">
-            <table>
+{% block heading %}
+    <h1> All Recipes </h1>
+{% endblock %}
+
+{% block content %}
+    <div class="recipeslist">
+        <table>
+            <tr>
+                <th> Name </th>
+                <th> Description </th>
+                <th> Favourite </th>
+            </tr>
+            {% for recipe in recipes %}
                 <tr>
-                    <th> Name </th>
-                    <th> Description </th>
-                    <th> Favourite </th>
+                    <td style="width: 25%;"> {{recipe.name}} </td>
+                    <td style="width: 65%;"> {{recipe.description}} </td>
+                    <td style="width: 10%; text-align: center;">
+                        {% if recipe.fav %}
+                            <img src="../static/star_y.png" width="40px" height="auto">
+                        {% else %}
+                            <img src="../static/star.png" width="40px" height="auto">
+                        {% endif %}
+                    </td>
                 </tr>
-                {% for recipe in recipes %}
-                    <tr>
-                        <td style="width: 25%;"> {{recipe.name}} </td>
-                        <td style="width: 65%;"> {{recipe.description}} </td>
-                        <td style="width: 10%; text-align: center;">
-                            {% if recipe.fav %}
-                                <img src="../static/star_y.png" width="40px" height="auto">
-                            {% else %}
-                                <img src="../static/star.png" width="40px" height="auto">
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-    </body>
-</html>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
