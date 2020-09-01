@@ -21,11 +21,28 @@
         
         <!-- Suggested recipes to do -->
         <div class="suggested">
+            <table>
+                <tr>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Favourite </th>
+                </tr>
+                {% for recipe in suggested %}
+                    <tr>
+                        <td style="width: 30%;"> {{recipe.name}} </td>
+                        <td style="width: 60%;"> {{recipe.description}} </td>
+                        <td style="width: 10%;"> {{recipe.fav}} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- <div class="suggested">
             <a target="_blank" href="img_mountains.jpg">
             <img src="img_mountains.jpg" alt="Mountains" width="600" height="400">
             </a>
             <div class="desc">Add a description of the image here
-        </div>
+        </div> -->
 
         <script type="text/javascript">
             window.onscroll = function() {myFunction()};

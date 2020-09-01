@@ -9,18 +9,24 @@ user = getpass.getuser().title()
 # Define a route for the app's home page
 @app.route("/")
 def index():
-    rand_idx = [random.randint(0, AllRecipes.query.count()) for i in range(5)]
+    rand_idx = []
+    while len(rand_idx) < 6:
+        ranval = random.randint(1, AllRecipes.query.count())
+        if ranval not in rand_idx:
+            rand_idx.append(ranval)
+    print("random numbers are ")
+    print(rand_idx)
     suggested = [AllRecipes.query.filter_by(id=i).first() for i in rand_idx]
     return render_template("index.html", username=user, suggested=suggested)
 
 # Define a route for the app's page of all recipes
 @app.route("/recipes")
 def recipes():
-    return render_template("recipes.html")
+    return render_template("recipes.html", recipes=AllRecipes.query.all())
 
 
 # Define a route for the app's About page
 @app.route("/favourites")
 def favourites():
-    return render_template("favourites.html")
-
+    favs = AllRecipes.query.filter_by(fav=True).all()
+    return render_template("favourites.html", favs=favs)
