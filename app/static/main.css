@@ -112,12 +112,21 @@ button.fav_btn {
   background: none;
 }
 
-button.deleter {
-  margin: 0;
+.deleter {
+  left: 95%;
+  width: 40px;
+  height: 60px;
   position: relative;
-  left: 92%;
   border: none;
   background: none;
+  display: inline-block;
+  background: url("../static/bin.png") no-repeat;
+  background-size: 40px auto;
+}
+
+.deleter:hover {
+  background: url("../static/bin_hover.png") no-repeat;
+  background-size: 40px auto;
 }
 
 /* Form formatting*/
