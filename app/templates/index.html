@@ -24,11 +24,15 @@
                     <td style="width: 25%;"> {{recipe.name}} </td>
                     <td style="width: 65%;"> {{recipe.description}} </td>
                     <td style="width: 10%; text-align: center;">
-                        {% if recipe.fav %}
-                            <img src="../static/star_y.png" width="40px" height="auto">
-                        {% else %}
-                            <img src="../static/star.png" width="40px" height="auto">
-                        {% endif %}
+                    {% if recipe.fav %}
+                        <button type="submit" class="tbl_fav" onclick="setFav({{recipe.id}})">
+                            <img src="../static/star_y.png" width="40px" height="auto" align="right">
+                        </button>
+                    {% else %}
+                        <button type="submit" class="tbl_fav" onclick="setFav({{recipe.id}})">
+                            <img src="../static/star.png" width="40px" height="auto" align="right">
+                        </button>
+                    {% endif %}
                     </td>
                 </tr>
             {% endfor %}

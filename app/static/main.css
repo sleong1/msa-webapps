@@ -99,6 +99,11 @@ div.recipeslist tr:hover {
   padding-bottom: 10px;
 }
 
+button.tbl_fav {
+  border: none;
+  background: none;
+}
+
 button.fav_btn {
   margin: 0;
   position: relative;

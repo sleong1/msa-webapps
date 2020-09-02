@@ -32,7 +32,16 @@
                 navbar.classList.remove("sticky");
               }
             }
-        </script>
+		</script>
+
+		<script type="text/javascript">
+	        function setFav(id) {
+	            console.log(" Setting FAV ")
+	            fetch('/recipes/' + id, {method: "FAV"})
+	            .then(() => window.location.reload())
+	            .catch((error) => console.log("Something went wrong: " + error));
+	        }
+    	</script>
 	</body>
 	<footer>
 		

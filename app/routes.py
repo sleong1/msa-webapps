@@ -5,16 +5,12 @@ import getpass
 
 AllRecipes = models.AllRecipes
 user = getpass.getuser().title()
+suggested = []
 
 # Define a route for the app's home page
-@app.route("/")
+@app.route("/", methods=['FAV', 'GET'])
 def index():
-    rand_idx = []
-    while len(rand_idx) < 5:
-        ranval = random.randint(1, AllRecipes.query.count())
-        if ranval not in rand_idx:
-            rand_idx.append(ranval)
-    suggested = [AllRecipes.query.filter_by(id=i).first() for i in rand_idx]
+    suggested = new_suggested()
     return render_template("index.html", username=user, suggested=suggested)
 
 # Define a route for the app's page of all recipes
@@ -24,7 +20,7 @@ def recipes():
 
 
 # Define a route for the app's About page
-@app.route("/favourites")
+@app.route("/favourites", methods=['FAV', 'GET'])
 def favourites():
     favs = AllRecipes.query.filter_by(fav=True).all()
     return render_template("favourites.html", favs=favs)
@@ -32,6 +28,7 @@ def favourites():
 @app.route("/recipes/<recipeid>", methods=['FAV', 'GET'])
 def recipe(recipeid):
     if request.method == 'FAV':
+        print(recipeid)
         fav_change(recipeid)
     this_recipe = AllRecipes.query.filter_by(id=recipeid).first()
     [ings, method] = this_recipe.recipe.split("</br></br>")
@@ -69,3 +66,10 @@ def fav_change(recipeid):
         'message': 'Recipe not found'
     }
     return jsonify(msg), 204
+
+def new_suggested(rand_idx=[]):
+    while len(rand_idx) < 5:
+        ranval = random.randint(1, AllRecipes.query.count())
+        if ranval not in rand_idx:
+            rand_idx.append(ranval)
+    return [AllRecipes.query.filter_by(id=i).first() for i in rand_idx]
