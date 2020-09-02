@@ -112,6 +112,21 @@ button.fav_btn {
   background: none;
 }
 
+button.deleter {
+  margin: 0;
+  position: relative;
+  left: 92%;
+  border: none;
+  background: none;
+}
+
+/* Form formatting*/
+div.form {
+  margin-left: 5%;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+
 /*
 div.suggested {
   margin: 5px;

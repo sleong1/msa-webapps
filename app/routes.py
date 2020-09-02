@@ -1,4 +1,5 @@
-from flask import render_template, request, redirect, jsonify
+from flask import render_template, request
+from flask import jsonify, redirect
 from app import app, models, db
 from app.forms import NewRecipe
 import random
@@ -25,10 +26,14 @@ def favourites():
     favs = AllRecipes.query.filter_by(fav=True).all()
     return render_template("favourites.html", favs=favs)
 
-@app.route("/recipes/<recipeid>", methods=['FAV', 'GET'])
+@app.route("/recipes/<recipeid>", methods=['FAV', 'GET', 'REMOVE'])
 def recipe(recipeid):
     if request.method == 'FAV':
         fav_change(recipeid)
+    if request.method == 'REMOVE':
+        delete_recipe(recipeid)
+        return redirect("/recipes")
+
     this_recipe = AllRecipes.query.filter_by(id=recipeid).first()
     [ings, method] = this_recipe.recipe.split("</br></br>")
     ings = [i.strip().capitalize() for i in ings.split("</br>")]
@@ -41,18 +46,20 @@ def newRecipe():
     recipe_form = NewRecipe(request.form)
 
     if request.method == "POST":
-        save_new_recipe(request)
+        recipe = AllRecipes()
+        save_new_recipe(recipe_form)
+        return redirect("/recipes")
 
     return render_template("new_recipe.html", form=recipe_form)
 
-
-def save_new_recipe(request):
-    name = request.form.get("name")
-    description = request.form.get('description')
-    ingredients = request.form.get('ingredients')
-    method = request.form.get('method')
+def save_new_recipe(form):
+    name = form.name.data
+    description = form.description.data
+    ingredients = form.ingredients.data
+    method = form.method.data
     recipe = ingredients + "</br></br>" + method
-    fav = request.form.get('favourite')
+    fav = form.favourite.data
+
     new_recipe = AllRecipes(name=name, description=description, recipe=recipe, fav=fav)
     db.session.add(new_recipe)
     db.session.commit()
@@ -78,3 +85,18 @@ def new_suggested(rand_idx=[]):
         if ranval not in rand_idx:
             rand_idx.append(ranval)
     return [AllRecipes.query.filter_by(id=i).first() for i in rand_idx]
+
+
+def delete_recipe(recipeid):
+    recipedata = AllRecipes.query.get(recipeid)
+    if recipedata != None:
+        msg = {
+            'message': 'Delete successful'
+        }
+        db.session.delete(recipedata)
+        db.session.commit()
+        return jsonify(msg), 200
+    msg = {
+        'message': 'Recipe not found'
+    }
+    return jsonify(msg), 204

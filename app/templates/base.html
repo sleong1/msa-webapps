@@ -42,8 +42,18 @@
 	            .catch((error) => console.log("Something went wrong: " + error));
 	        }
     	</script>
+
+    	<script type="text/javascript">
+	        function remove(id) {
+	            console.log("Deleting recipe...")
+	            fetch('/recipes/' + id, {method: "REMOVE"})
+	            .then(() => window.location.replace("{{ url_for('recipes') }}"))
+	            .catch((error) => console.log("Something went wrong: " + error));
+	        }
+    	</script>
+
 	</body>
 	<footer>
-		
+		{% block footer %}{% endblock %}
 	</footer>
 </html>

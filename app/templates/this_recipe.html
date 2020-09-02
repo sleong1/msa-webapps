@@ -32,5 +32,11 @@
         	{% endfor %}
     	</ol>
     </div>
-    
+{% endblock %}
+
+{% block footer %}
+    <button type="submit" class="deleter" onclick="remove({{id}})">
+        <img src="../static/bin.png" width="40px" height="auto">
+    </button>
+
 {% endblock %}
