@@ -62,6 +62,12 @@ def editRecipe(recipeid):
 
     return render_template('edit_recipe.html', form=form, name=recipedata.name)
 
+@app.route('/search/<searchterm>', methods=['GET', 'SEARCH'])
+def search(searchterm):
+    if method == "SEARCH":
+        pass
+    return render_template("search.html", searchterm=searchterm)
+
 def save_edit(recipeid, form):
     data = AllRecipes.query.get(recipeid)
     

@@ -12,3 +12,8 @@ class NewRecipe(FlaskForm):
     # recipe = StringField('Recipe', validators=[DataRequired()])
     favourite = BooleanField('Favourite')
     submit = SubmitField('Add')
+
+
+class Search(FlaskForm):
+	searchterm = StringField('Search...')
+	submit = SubmitField('Search')

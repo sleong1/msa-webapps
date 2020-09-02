@@ -21,6 +21,36 @@
   color: black;
 }
 
+#navbar .search-container {
+  float: right;
+  vertical-align: middle;
+  margin-top: 11px;
+}
+
+#navbar .search-container input[type=text]{
+  padding: 6px;
+  margin-right: 5px;
+  font-size: 17px;
+  border: none;
+  font-size: 17px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+#navbar .search-container button {
+    float: right;
+    margin-top: 0px;
+    margin-right: 16px;
+    padding: 5px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
 /* For sticky navigation bar */
 .content {
   padding: 16px;

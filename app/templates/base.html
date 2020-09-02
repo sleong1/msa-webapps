@@ -16,6 +16,13 @@
             <a href="{{url_for('recipes')}}">All Recipes</a>
             <a href="{{url_for('favourites')}}">Favourites</a>
             <a href="{{url_for('newRecipe')}}">Add Recipe</a>
+            <div class="search-container">
+                <form action="/search/" method="SEARCH" >
+			        <input type="text" placeholder="Search..." name="search">
+					<button type="submit"><img src="../static/search.png" width="auto" height="19.5px"></button>
+				</form>
+
+        	</div>
         </div>
 
         {% block content %}{% endblock %}
@@ -41,6 +48,7 @@
 	            .catch((error) => console.log("Something went wrong: " + error));
 	        }
     	</script>
+
 
     	<script type="text/javascript">
 	        function remove(id) {
