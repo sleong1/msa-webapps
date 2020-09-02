@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<title>Edit Recipe</title>
+
+{% extends "base.html" %}
+
+{% block header %}
+<h1> Edit recipe </h1>
+{% endblock %}
+
+{% block content %}
+	<h2> Edit {{ name }} recipe </h2>
+	    <div class="form">
+	        <form action="" method="post" novalidate>
+	            {{ form.hidden_tag() }}
+	            <p>
+	                {{ form.name.label }}<br>
+	                {{ form.name(size=32) }}
+	            </p>
+	            <p>
+	                {{ form.description.label }}<br>
+	                {{ form.description(size=32) }}
+	            </p>
+	            <p>
+	                {{ form.ingredients.label }}<br>
+	                {{ form.ingredients(size=32) }}
+	            </p>
+	            <p>
+	                {{ form.method.label }}<br>
+	                {{ form.method(cols="150", rows="20") }}
+	            </p>
+	            <p>{{ form.favourite() }} {{ form.favourite.label }}</p>
+	            <p>{{ form.submit() }}</p>
+	        </form>
+	    </div>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+
+{% endblock %}

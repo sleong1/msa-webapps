@@ -52,6 +52,24 @@ def newRecipe():
 
     return render_template("new_recipe.html", form=recipe_form)
 
+@app.route('/recipe/<recipeid>/edit', methods=['GET', 'POST'])
+def edit_recipe(recipeid):
+    recipedata = AllRecipes.query.get(recipeid)
+    if recipedata:
+        form = NewRecipe(formdata=request.form, obj=recipedata)
+
+        if request.method == 'POST' and form.validate():
+            save_edit(album, form)
+            return redirect('/recipe/{}'.format(recipeid))
+
+        return render_template('edit_recipe.html', form=form, name=recipedata.name)
+    else:
+        return 'Error loading recipe (#{})'.format(recipeid)
+
+def save_edit(form):
+
+
+
 def save_new_recipe(form):
     name = form.name.data
     description = form.description.data
