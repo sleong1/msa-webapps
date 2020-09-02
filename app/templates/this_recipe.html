@@ -9,15 +9,24 @@
 
 {% block content %}
     </br>
+
+    <!-- Favourite button -->
     {% if fav %}
-        <button type="submit" class="fav_btn" onclick="setFav(id)">
-            <img src="../static/star_y.png" width="40px" height="auto" align="right">
+        <button type="submit" class="fav_btn" onclick="setFav({{ id }})">
+            <img src="../static/star_y.png">
         </button>
     {% else %}
-        <button type="submit" class="fav_btn" onclick="setFav(id)">
-            <img src="../static/star.png" width="40px" height="auto" align="right">
+        <button type="submit" class="fav_btn" onclick="setFav({{ id }})">
+            <img src="../static/star.png">
         </button>
     {% endif %}
+
+    <!-- Edit button -->
+    <a id="editButton" href="/recipes/{{ id }}/edit">
+        <img src="../static/edit.png" width="40px" height="auto">
+    </a>
+
+    <!-- Recipe -->
     <div>
     	<h3> Ingredients </h3>
     	<ul>
@@ -35,6 +44,7 @@
 {% endblock %}
 
 {% block footer %}
+    <!-- Delete button -->
     <button type="submit" class="deleter" onclick="remove({{id}})"></button>
 
 {% endblock %}

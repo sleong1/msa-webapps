@@ -99,12 +99,22 @@ div.recipeslist tr:hover {
   padding-bottom: 10px;
 }
 
+#editButton {
+  position: absolute;
+  margin-top: 13px;
+  left: 88%;
+}
+
+#editButton:hover img {
+  width: 45px;
+}
+
 button.tbl_fav {
   border: none;
   background: none;
 }
 
-button.fav_btn {
+.fav_btn {
   margin: 0;
   position: relative;
   left: 94%;
@@ -112,11 +122,23 @@ button.fav_btn {
   background: none;
 }
 
+.fav_btn img{
+  position: absolute;
+  width: 40px;
+  height: auto;
+  align: right;
+}
+
+
+.fav_btn:hover img {
+  width: 43px;
+}
+
 .deleter {
   left: 95%;
-  width: 40px;
+  width: 45px;
   height: 60px;
-  position: relative;
+  position: absolute;
   border: none;
   background: none;
   display: inline-block;
@@ -125,8 +147,8 @@ button.fav_btn {
 }
 
 .deleter:hover {
-  background: url("../static/bin_hover.png") no-repeat;
-  background-size: 40px auto;
+  /*background: url("../static/bin_hover.png") no-repeat;*/
+  background-size: 45px auto;
 }
 
 /* Form formatting*/

@@ -35,39 +35,43 @@ def recipe(recipeid):
         return redirect("/recipes")
 
     this_recipe = AllRecipes.query.filter_by(id=recipeid).first()
-    [ings, method] = this_recipe.recipe.split("</br></br>")
-    ings = [i.strip().capitalize() for i in ings.split("</br>")]
-    method = [m.strip().capitalize() for m in method.split("</br>")]
+    ings = [i.strip().capitalize() for i in this_recipe.ingredients.split("</br>")]
+    method = [m.strip().capitalize() for m in this_recipe.method.split("</br>")]
     return render_template("this_recipe.html", name=this_recipe.name, ingredients=ings, method=method, fav=this_recipe.fav, id=recipeid)
 
 
 @app.route("/new-recipe", methods=['POST', 'GET'])
 def newRecipe():
-    recipe_form = NewRecipe(request.form)
+    form = NewRecipe(request.form)
 
-    if request.method == "POST":
+    if request.method == "POST": # and form.validate():
         recipe = AllRecipes()
-        save_new_recipe(recipe_form)
+        save_new_recipe(form)
         return redirect("/recipes")
 
-    return render_template("new_recipe.html", form=recipe_form)
+    return render_template("new_recipe.html", form=form)
 
-@app.route('/recipe/<recipeid>/edit', methods=['GET', 'POST'])
-def edit_recipe(recipeid):
+@app.route('/recipes/<recipeid>/edit', methods=['GET', 'POST'])
+def editRecipe(recipeid):
     recipedata = AllRecipes.query.get(recipeid)
-    if recipedata:
-        form = NewRecipe(formdata=request.form, obj=recipedata)
+    form = NewRecipe(formdata=request.form, obj=recipedata)
 
-        if request.method == 'POST' and form.validate():
-            save_edit(album, form)
-            return redirect('/recipe/{}'.format(recipeid))
+    if request.method == 'POST':
+        save_edit(recipeid, form)
+        return redirect('/recipes/' + str(recipeid))
 
-        return render_template('edit_recipe.html', form=form, name=recipedata.name)
-    else:
-        return 'Error loading recipe (#{})'.format(recipeid)
+    return render_template('edit_recipe.html', form=form, name=recipedata.name)
 
-def save_edit(form):
-
+def save_edit(recipeid, form):
+    data = AllRecipes.query.get(recipeid)
+    
+    data.name = form.name.data
+    data.description = form.description.data
+    data.ingredients = form.ingredients.data
+    data.method = form.method.data
+    data.fav = form.favourite.data
+    
+    db.session.commit()
 
 
 def save_new_recipe(form):
@@ -78,10 +82,9 @@ def save_new_recipe(form):
     recipe = ingredients + "</br></br>" + method
     fav = form.favourite.data
 
-    new_recipe = AllRecipes(name=name, description=description, recipe=recipe, fav=fav)
+    new_recipe = AllRecipes(name=name, description=description, ingredients=ingredients, method=method, fav=fav)
     db.session.add(new_recipe)
     db.session.commit()
-
 
 def fav_change(recipeid):
     recipedata = AllRecipes.query.get(recipeid)
