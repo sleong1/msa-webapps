@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, redirect, jsonify
 from app import app, models, db
 import random
 import getpass
@@ -29,15 +29,43 @@ def favourites():
     favs = AllRecipes.query.filter_by(fav=True).all()
     return render_template("favourites.html", favs=favs)
 
-@app.route("/recipes/<recipeid>")
+@app.route("/recipes/<recipeid>", methods=['FAV', 'GET'])
 def recipe(recipeid):
+    if request.method == 'FAV':
+        fav_change(recipeid)
     this_recipe = AllRecipes.query.filter_by(id=recipeid).first()
     [ings, method] = this_recipe.recipe.split("</br></br>")
     ings = [i.strip().capitalize() for i in ings.split("</br>")]
     method = [m.strip().capitalize() for m in method.split("</br>")]
-    return render_template("this_recipe.html", name=this_recipe.name, ingredients=ings, method=method)
+    return render_template("this_recipe.html", name=this_recipe.name, ingredients=ings, method=method, fav=this_recipe.fav, id=recipeid)
 
 
-@app.route("/new-recipe")
-def newrecipe():
-    return render_template("new_recipe.html")
+@app.route("/new-recipe", methods=['POST'])
+def newRecipe():
+    name = request.form.get("name")
+    description = request.form.get('description')
+    ingredients = request.form.get('ingredients')
+    method = request.form.get('method')
+    recipe = ingredients + "</br></br>" + method
+    fav = request.form.get('favourite')
+
+    new_recipe = AllRecipes(name=name, description=description, recipe=recipe, fav=fav)
+    db.session.add(new_recipe)
+    db.session.commit()
+
+    return redirect(url_for('index'))#render_template("new_recipe.html")
+
+
+def fav_change(recipeid):
+    recipedata = AllRecipes.query.get(recipeid)
+    if recipedata != None:
+        msg = {
+            'message': 'Favourite toggle successful'
+        }
+        recipedata.fav = not recipedata.fav
+        db.session.commit()
+        return jsonify(msg), 200
+    msg = {
+        'message': 'Recipe not found'
+    }
+    return jsonify(msg), 204

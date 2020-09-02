@@ -99,6 +99,14 @@ div.recipeslist tr:hover {
   padding-bottom: 10px;
 }
 
+button.fav_btn {
+  margin: 0;
+  position: relative;
+  left: 94%;
+  border: none;
+  background: none;
+}
+
 /*
 div.suggested {
   margin: 5px;

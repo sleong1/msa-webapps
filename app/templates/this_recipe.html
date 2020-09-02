@@ -8,6 +8,16 @@
 {% endblock %}
 
 {% block content %}
+    </br>
+    {% if fav %}
+        <button type="submit" class="fav_btn" onclick="setFav(id)">
+            <img src="../static/star_y.png" width="40px" height="auto" align="right">
+        </button>
+    {% else %}
+        <button type="submit" class="fav_btn" onclick="setFav(id)">
+            <img src="../static/star.png" width="40px" height="auto" align="right">
+        </button>
+    {% endif %}
     <div>
     	<h3> Ingredients </h3>
     	<ul>
@@ -22,4 +32,13 @@
         	{% endfor %}
     	</ol>
     </div>
+    <script>
+        function setFav(id) {
+            console.log(" Setting FAV ")
+            fetch("/recipes/" + {{ id }},
+                  {method: "FAV"})
+            .then(() => window.location.reload())
+            .catch((error) => console.log("Something went wrong: " + error));
+        }
+    </script>
 {% endblock %}
