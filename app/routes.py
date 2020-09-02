@@ -44,7 +44,7 @@ def recipe(recipeid):
 def newRecipe():
     form = NewRecipe(request.form)
 
-    if request.method == "POST": # and form.validate():
+    if request.method == "POST":
         recipe = AllRecipes()
         save_new_recipe(form)
         return redirect("/recipes")

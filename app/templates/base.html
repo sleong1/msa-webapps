@@ -36,7 +36,6 @@
 
 		<script type="text/javascript">
 	        function setFav(id) {
-	            console.log(" Setting FAV ")
 	            fetch('/recipes/' + id, {method: "FAV"})
 	            .then(() => window.location.reload())
 	            .catch((error) => console.log("Something went wrong: " + error));
@@ -45,11 +44,16 @@
 
     	<script type="text/javascript">
 	        function remove(id) {
-	            console.log("Deleting recipe...")
 	            fetch('/recipes/' + id, {method: "REMOVE"})
 	            .then(() => window.location.replace("{{ url_for('recipes') }}"))
 	            .catch((error) => console.log("Something went wrong: " + error));
 	        }
+    	</script>
+
+    	<script type="text/javascript">
+    		function toRecipe(id){
+    			window.location.replace("/recipes/" + id)
+    		}
     	</script>
 
 	</body>

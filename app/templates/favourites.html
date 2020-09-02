@@ -19,8 +19,8 @@
             </tr>
             {% for recipe in favs %}
                 <tr>
-                    <td style="width: 25%;"> {{recipe.name}} </td>
-                    <td style="width: 65%;"> {{recipe.description}} </td>
+                    <td style="width: 25%;" onclick="toRecipe({{ recipe.id }})"> {{recipe.name}} </td>
+                    <td style="width: 65%;" onclick="toRecipe({{ recipe.id }})"> {{recipe.description}} </td>
                     <td style="width: 10%; text-align: center;">
                         {% if recipe.fav %}
                         <button type="submit" class="tbl_fav" onclick="setFav({{recipe.id}})">
