@@ -1,16 +1,16 @@
 from flask import render_template, request, redirect, jsonify
 from app import app, models, db
+from app.forms import NewRecipe
 import random
 import getpass
 
 AllRecipes = models.AllRecipes
 user = getpass.getuser().title()
-suggested = []
 
 # Define a route for the app's home page
 @app.route("/", methods=['FAV', 'GET'])
 def index():
-    suggested = new_suggested()
+    suggested = new_suggested([])
     return render_template("index.html", username=user, suggested=suggested)
 
 # Define a route for the app's page of all recipes
@@ -28,7 +28,6 @@ def favourites():
 @app.route("/recipes/<recipeid>", methods=['FAV', 'GET'])
 def recipe(recipeid):
     if request.method == 'FAV':
-        print(recipeid)
         fav_change(recipeid)
     this_recipe = AllRecipes.query.filter_by(id=recipeid).first()
     [ings, method] = this_recipe.recipe.split("</br></br>")
@@ -37,20 +36,26 @@ def recipe(recipeid):
     return render_template("this_recipe.html", name=this_recipe.name, ingredients=ings, method=method, fav=this_recipe.fav, id=recipeid)
 
 
-@app.route("/new-recipe", methods=['POST'])
+@app.route("/new-recipe", methods=['POST', 'GET'])
 def newRecipe():
+    recipe_form = NewRecipe(request.form)
+
+    if request.method == "POST":
+        save_new_recipe(request)
+
+    return render_template("new_recipe.html", form=recipe_form)
+
+
+def save_new_recipe(request):
     name = request.form.get("name")
     description = request.form.get('description')
     ingredients = request.form.get('ingredients')
     method = request.form.get('method')
     recipe = ingredients + "</br></br>" + method
     fav = request.form.get('favourite')
-
     new_recipe = AllRecipes(name=name, description=description, recipe=recipe, fav=fav)
     db.session.add(new_recipe)
     db.session.commit()
-
-    return redirect(url_for('index'))#render_template("new_recipe.html")
 
 
 def fav_change(recipeid):
