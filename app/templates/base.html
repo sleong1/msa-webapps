@@ -17,11 +17,8 @@
             <a href="{{url_for('favourites')}}">Favourites</a>
             <a href="{{url_for('newRecipe')}}">Add Recipe</a>
             <div class="search-container">
-                <form action="/search/" method="SEARCH" >
-			        <input type="text" placeholder="Search..." name="search">
-					<button type="submit"><img src="../static/search.png" width="auto" height="19.5px"></button>
-				</form>
-
+		        <input type="text" placeholder="Search..." name="search" id="searchterm">
+				<button onclick="search()"><img src="../static/search.png" width="auto" height="19.5px"></button>
         	</div>
         </div>
 
@@ -61,6 +58,11 @@
     	<script type="text/javascript">
     		function toRecipe(id){
     			window.location.replace("/recipes/" + id)
+    		}
+
+    		function search(){
+    			var searchterm = document.getElementById("searchterm").value;
+    			window.location.replace("/search/" + searchterm)
     		}
     	</script>
 

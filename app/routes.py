@@ -62,11 +62,19 @@ def editRecipe(recipeid):
 
     return render_template('edit_recipe.html', form=form, name=recipedata.name)
 
-@app.route('/search/<searchterm>', methods=['GET', 'SEARCH'])
+@app.route('/search/<searchterm>')
 def search(searchterm):
-    if method == "SEARCH":
-        pass
-    return render_template("search.html", searchterm=searchterm)
+    results = search_results(searchterm)
+    return render_template("search.html", searchterm=searchterm, num=len(results), data=results)
+
+
+def search_results(searchterm):
+    regexterm = "%" + searchterm + "%"
+    namedata = AllRecipes.query.filter(AllRecipes.name.like(regexterm)).all()
+    ingredientdata = AllRecipes.query.filter(AllRecipes.ingredients.like(regexterm)).all()
+    methoddata = AllRecipes.query.filter(AllRecipes.method.like(regexterm)).all()
+    data = namedata + ingredientdata + methoddata
+    return set(data)
 
 def save_edit(recipeid, form):
     data = AllRecipes.query.get(recipeid)

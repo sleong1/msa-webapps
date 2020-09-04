@@ -5,9 +5,39 @@
 {% extends "base.html" %}
 
 {% block heading %}
-<h1>Search - {{ searchterm }}</h1>
+<h1>"{{ searchterm }}" - Search</h1>
 {% endblock %}
 
 {% block content %}
-<p> Insert search results here </p>
+	{% if num != 1 %}
+		<p>{{ num }} results for "{{ searchterm }}"</p>
+	{% else %}
+		<p>{{ num }} result for "{{ searchterm }}"</p>
+	{% endif %}
+	<div class="searchlist">
+        <table>
+            <tr>
+                <th> Name </th>
+                <th> Description </th>
+                <th> Favourite </th>
+            </tr>
+			{% for result in data %}
+		        <tr>
+		            <td onclick="toRecipe({{ result.id }})" style="width: 25%;"> {{result.name}} </td>
+		            <td onclick="toRecipe({{ result.id }})" style="width: 65%;"> {{result.description}} </td>
+		            <td style="width: 10%; text-align: center;">
+		                {% if result.fav %}
+		                <button type="submit" class="tbl_fav" onclick="setFav({{result.id}})">
+		                    <img src="../static/star_y.png" width="40px" height="auto" align="right">
+		                </button>
+		                {% else %}
+		                    <button type="submit" class="tbl_fav" onclick="setFav({{result.id}})">
+		                        <img src="../static/star.png" width="40px" height="auto" align="right">
+		                    </button>
+		                {% endif %}
+		            </td>
+		        </tr>
+			{% endfor %}
+		</table>
+	</div>
 {% endblock %}
