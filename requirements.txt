@@ -1,4 +1,3 @@
-angles==1.9.11
 azure-cognitiveservices-vision-computervision==0.6.0
 azure-common==1.1.25
 bondpy==1.8.3
